@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1 id="clock"></h1>
+    </div>
+  </body>
+</html>
+<script>
+  const curentTime = () => {
+    const element = document.getElementById("clock");
+
+    let date = new Date(),
+      hours = date.getHours(),
+      minutes = date.getMinutes(),
+      seconds = date.getSeconds();
+
+    let day;
+    day = hours < 12 ? "AM" : "PM";
+    hours = hours > 12 ? hours - 12 : hours;
+    hours = hours == 0 ? (hours = 12) : hours;
+
+    hours = hours < 10 ? `0${hours}` : hours;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+    element.textContent = `${hours}:${minutes}:${seconds} ${day}`;
+  };
+  curentTime();
+  setInterval(curentTime, 1000);
+</script>
